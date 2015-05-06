@@ -4,7 +4,7 @@ FROM tomcat:7-jre7
 MAINTAINER Alexandre Santos <ajvsms@gmail.com>
 
 # The list of artifacts that are needed to the openNCP and the latest version
-ENV TRC_STS_VERSION 2.0.2
+ENV TRC_STS_VERSION 2.1.2
 ENV TSL_SYNC_VERSION 2.8.9
 ENV TSAM_SYNC_VERSION 7.4.0
 ENV NCP_A_VERSION 3.5.0
