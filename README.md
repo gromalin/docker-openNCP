@@ -14,5 +14,4 @@ Use a mariadb client (or a MySQL gui one like Workbench) and execute the create_
 
 Create the container for the openNCP
 
-    $ sudo docker run --rm --name test1 --link db:epsosdb -P -v $(pwd)/epsos-configuration:/usr/local/tomcat/epsos-configuration -v $(pwd)/tsam-sync:/opt/tsam-sync -v $(pwd)/context.xml:/usr/local/tomcat/conf/context.xml --hostname="openncp" --env EPSOS_PROPS_PATH=/usr/local/tomcat/epsos-configuration/ --env JAVA_OPTS="-Xms32m -Xmx384m -XX:MaxPermSize=256m -DopenATNA.properties.path=file:/usr/local/tomcat/epsos-configuration/ATNA_resources/openatna.properties" openncp:2.0.2-RC2
-
+    $ sudo docker run --rm --name test1 --link db:epsosdb -P -v $(pwd)/epsos-configuration:/usr/local/tomcat/epsos-configuration -v $(pwd)/tsam-sync:/opt/tsam-sync -v $(pwd)/context.xml:/usr/local/tomcat/conf/context.xml --hostname="openncp" --env EPSOS_PROPS_PATH=/usr/local/tomcat/epsos-configuration/ --env JAVA_OPTS="-Xms32m -Xmx384m -XX:MaxPermSize=256m -DopenATNA.properties.path=file:/usr/local/tomcat/epsos-configuration/ATNA_resources/openatna.properties" openncp:latest
