@@ -1,6 +1,6 @@
 Create a MariaDB container to hold the necessary databases:
 
-    $ sudo docker run -d -P --name db -e MYSQL_ROOT_PASSWORD=root.Pass  mariadb:latest
+    $ sudo docker run -d -P --name db -e MYSQL_ROOT_PASSWORD=password  mariadb:latest
 
 Verify the status of the container and the port it is listening on the host.
 
@@ -10,7 +10,7 @@ Verify the status of the container and the port it is listening on the host.
 
 Use a mariadb client (or a MySQL gui one like Workbench) and execute the create_database.sql file.
 
-    $ mysql -h0.0.0.0 -P32780 -uroot -proot.Pass < create_database.sql 
+    $ mysql -h0.0.0.0 -P32780 -uroot -ppassword < create_database.sql 
 
 Create the container for the openNCP
 
