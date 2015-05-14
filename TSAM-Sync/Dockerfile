@@ -12,9 +12,10 @@ ENV EPSOS_PROPS_PATH $TSAM_HOME/conf/
 RUN mkdir -p "$TSAM_HOME"
 WORKDIR $TSAM_HOME
 
-COPY ./tsam-sync.tar.gz $TSAM_HOME/
-RUN tar -xvf tsam-sync.tar.gz --strip-components=1 \
-    && rm tsam-sync.tar.gz
+RUN wget https://openncp.atlassian.net/wiki/download/attachments/11075686/tsam-sync.tar.gz \
+    && tar -xvf tsam-sync.tar.gz --strip-components=1 \
+    && rm tsam-sync.tar.gz \
+    && wget https://joinup.ec.europa.eu/nexus/content/repositories/releases/eu/europa/ec/joinup/ecc/epsos-tsam-sync/${TSAM_SYNC_VERSION}/epsos-tsam-sync-${TSAM_SYNC_VERSION}.jar
 
 RUN echo -n | openssl s_client -connect ecrtsppt.conet-services.de:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > conet-services.de.cert \
     && keytool -import -trustcacerts -file conet-services.de.cert -alias tsam-server -keystore /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/cacerts -storepass changeit -noprompt \
