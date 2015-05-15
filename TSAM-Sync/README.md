@@ -13,7 +13,6 @@ Create a file (env.list) with the Environment variables used in the TSAM
     
     # Database password
     MYSQL_ENV_MYSQL_ROOT_PASSWORD=password
-    Create the container for the openNCP TSAM Syncronizer
 
 Create a container linking it to the database and passing the variables from the env.list file
 
