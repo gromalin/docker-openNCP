@@ -9,8 +9,12 @@ ENV TSAM_HOME /opt/tsam-sync
 ENV PATH $TSAM_HOME:$PATH
 ENV EPSOS_PROPS_PATH $TSAM_HOME/conf/
 
-RUN mkdir -p "$TSAM_HOME"
 WORKDIR $TSAM_HOME
+
+RUN apt-get update \
+    && apt-get install -y mariadb-client
+
+RUN mkdir -p "$TSAM_HOME"
 
 RUN wget https://openncp.atlassian.net/wiki/download/attachments/11075686/tsam-sync.tar.gz \
     && tar -xvf tsam-sync.tar.gz --strip-components=1 \
@@ -21,6 +25,7 @@ RUN echo -n | openssl s_client -connect ecrtsppt.conet-services.de:443 | sed -ne
     && keytool -import -trustcacerts -file conet-services.de.cert -alias tsam-server -keystore /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/cacerts -storepass changeit -noprompt \
     && rm conet-services.de.cert
 
+COPY ./create_tsam_database.sql $TSAM_HOME/
 COPY ./docker-entrypoint.sh $TSAM_HOME/
 
 CMD ["docker-entrypoint.sh"]
