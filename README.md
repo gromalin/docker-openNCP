@@ -1,3 +1,5 @@
+Credits : fork from the work of Alexander Santos https://github.com/alexsantos/docker-openNCP
+
 Create a MariaDB container to hold the necessary databases:
 
     $ sudo docker run -d -P --name db -e MYSQL_ROOT_PASSWORD=password  mariadb:latest
