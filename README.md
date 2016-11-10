@@ -14,4 +14,8 @@ Use a mariadb client (or a MySQL gui one like Workbench) and execute the create_
 
 Create the container for the openNCP
 
-    $ sudo docker run --rm --name test1 --link db:epsosdb -P -v $(pwd)/epsos-configuration:/usr/local/tomcat/epsos-configuration -v $(pwd)/tsam-sync:/opt/tsam-sync -v $(pwd)/context.xml:/usr/local/tomcat/conf/context.xml --hostname="openncp" --env EPSOS_PROPS_PATH=/usr/local/tomcat/epsos-configuration/ --env JAVA_OPTS="-Xms32m -Xmx384m -XX:MaxPermSize=256m -DopenATNA.properties.path=file:/usr/local/tomcat/epsos-configuration/ATNA_resources/openatna.properties" openncp:latest
+    $ sudo docker run --rm --name test1 --link db:epsosdb -p 8080:8080  -e "JAVA_OPTS=-Djava.security.egd=file:/dev/./urandom"  -v $(pwd)/epsos-configuration:/usr/local/tomcat/epsos-configuration -v $(pwd)/tsam-sync:/opt/tsam-sync -v $(pwd)/context.xml:/usr/local/tomcat/conf/context.xml --hostname="openncp" --env EPSOS_PROPS_PATH=/usr/local/tomcat/epsos-configuration/ --env JAVA_OPTS="-Xms32m -Xmx384m -XX:MaxPermSize=256m -DopenATNA.properties.path=file:/usr/local/tomcat/epsos-configuration/ATNA_resources/openatna.properties" openncp:latest
+
+Testing TRC-STS
+
+  Try to access to http://127.0.0.1:8080/TRC-STS/STSServiceService
